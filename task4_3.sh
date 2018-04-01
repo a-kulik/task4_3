@@ -27,6 +27,7 @@ mkdir /tmp/backups
 elif [ $2 -eq 0 ]
 then
 echo "Error: Not a correct number of backups" >&2
+exit 0
 fi
 
 
