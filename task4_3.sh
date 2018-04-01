@@ -91,7 +91,7 @@ tar -zcf "$archive_name" -P "$1"
 fi
 if [ "$del_bkp" -eq 2 ]
 then
-for i in $(ls -la /tmp/backups/ | grep "$tar_name" | tail -n+$(( $2-2 )) | awk '{print $9}' | sort | sed '$ d')
+for i in $(ls -la /tmp/backups/ | grep "$tar_name" | tail -n+$(( $2-1 )) | awk '{print $9}' | sort | sed '$ d')
 do
 rm /tmp/backups/"$i"
 done
