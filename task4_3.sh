@@ -63,7 +63,7 @@ exit
 fi
 if [ "$del_bkp" -eq 0 ]
 then
-for i in $(ls -la /tmp/backups/ | tail -n+4 | awk '{print $9}' | sort -r | tail -n+2)
+for i in $(ls -la /tmp/backups/ | grep "$tar_name" | tail -n+0 | awk '{print $9}' | sort -r | tail -n+2)
 do
 index=$(echo "$i" | awk -F . '{print $(NF-2)}')
 number=$(( $index+1 ))
@@ -75,11 +75,11 @@ tar -zcf "$archive_name" -P "$1"
 fi
 if [ "$del_bkp" -eq 1 ]
 then
-for i in $(ls -la /tmp/backups/ | tail -n+$(( 2+$2 )) | awk '{print $9}' | sort | sed '$ d')
+for i in $(ls -la /tmp/backups/ | grep "$tar_name" | tail -n+$(( $2-2 )) | awk '{print $9}' | sort | sed '$ d')
 do
 rm /tmp/backups/"$i"
 done
-for i in $(ls -la /tmp/backups/ | tail -n+4 | awk '{print $9}' | sort -r | tail -n+2)
+for i in $(ls -la /tmp/backups/ | grep "$tar_name" | awk '{print $9}' | sort -r | tail -n+2)
 do
 index=$(echo "$i" | awk -F . '{print $(NF-2)}')
 number=$(($index+1))
@@ -91,11 +91,11 @@ tar -zcf "$archive_name" -P "$1"
 fi
 if [ "$del_bkp" -eq 2 ]
 then
-for i in $(ls -la /tmp/backups/ | tail -n+$(( 2+$2 )) | awk '{print $9}' | sort | sed '$ d')
+for i in $(ls -la /tmp/backups/ | grep "$tar_name" | tail -n+$(( $2-2 )) | awk '{print $9}' | sort | sed '$ d')
 do
 rm /tmp/backups/"$i"
 done
-for i in $(ls -la /tmp/backups/ | tail -n+4 | awk '{print $9}' | sort -r | tail -n+2)
+for i in $(ls -la /tmp/backups/ | grep "$tar_name" | awk '{print $9}' | sort -r | tail -n+2)
 do
 index=$(echo "$i" | awk -F . '{print $(NF-2)}')
 number=$(($index+1))
